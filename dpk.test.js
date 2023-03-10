@@ -27,15 +27,8 @@ describe("deterministicPartitionKey", () => {
     expect(trivialKey).toBe("0");
   });
 
-  it("Returns hash of event when given empty event (no partitionKey passed)", () => {
+  it("Returns hash of event when given empty event", () => {
     const emptyEvent = {}
-    const hashOfNothing = deterministicPartitionKey(emptyEvent);
-    const hash = getHash(JSON.stringify(emptyEvent))
-    expect(hashOfNothing).toBe(hash);
-  });
-
-  it("Returns hash of event when given non-empty event (no partitionKey passed)", () => {
-    const emptyEvent = {name: 'Bob', id: 32}
     const hashOfNothing = deterministicPartitionKey(emptyEvent);
     const hash = getHash(JSON.stringify(emptyEvent))
     expect(hashOfNothing).toBe(hash);
@@ -45,6 +38,13 @@ describe("deterministicPartitionKey", () => {
     const emptyEvent = {partitionKey: '123'}
     const hash = deterministicPartitionKey(emptyEvent);
     expect(hash).toBe('123');
+  });
+
+  it("Returns hash of event when given non-empty event (no partitionKey passed)", () => {
+    const emptyEvent = {name: 'Bob', id: 32}
+    const hashOfNothing = deterministicPartitionKey(emptyEvent);
+    const hash = getHash(JSON.stringify(emptyEvent))
+    expect(hashOfNothing).toBe(hash);
   });
 
   it("Returns partitionKey when given non-empty event AND partition Key", () => {

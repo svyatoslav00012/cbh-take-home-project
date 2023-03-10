@@ -10,3 +10,7 @@ You will be graded on the exhaustiveness and quality of your unit tests, the dep
 
 ## Your Explanation Here
 1. First obvious step - separate reusable code to separate function (so we create `getHash` function)
+2. Separate hash algorithm and digest encoding to constants, not critical here, it's better to avoid using literals in code
+3. Then we simplify logic of the function itself. rewrite it in more functional style, removing mutability. It depends on projects conventions what style to use.
+4. I thought about splitting it even further (more functions), but I'm not sure whether it will improve readability or make it worse.
+5. Sequential nature of this function pushed me to think about implementing it as Promises (kinda JS monads), but again, to make one function looks perfect, I should create even more code, which, in general will make readability harder, especialy for junior developers
